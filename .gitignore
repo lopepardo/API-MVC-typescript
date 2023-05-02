@@ -1,3 +1,46 @@
-node_modules
-dist
-# .env
+# Automatically generated files and folders
+node_modules/
+coverage/
+build/
+dist/
+logs/
+*.log
+*.pid
+*.swp
+npm-debug.log*
+package-lock.json
+
+# Development dependencies
+/dev-dependencies
+
+# Configuration files
+env/
+.env
+.env.local
+.env.*.local
+.env.test
+.env.production
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.cache
+
+# Editor and file system
+.vscode/
+.idea/
+*.sublime*
+*.swp
+.DS_Store
+Thumbs.db
+
+# Others
+*.zip
+*.rar
+*.tar.gz
+*.bak
+*.backup
+*.orig
+*.old
+*.tmp

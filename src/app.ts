@@ -1,25 +1,41 @@
-import express, { Application, Request, Response, NextFunction } from "express";
+import express from "express";
 import dotenv from "dotenv";
+import morgan from "morgan";
 import cors from "cors";
 
 import router from "./routes/router";
 
-dotenv.config();
+import { errorHandlerMiddleware, routeNotFoundMiddleware } from "./middlewares";
 
-const app: Application = express();
-app.set("port", process.env.PORT ?? 3001);
+dotenv.config({ path: "./env/.env" });
 
-// Configuración de middleware
+const app = express();
+
+// ------------------ Server config ------------------
+// Production env config
+// if (process.env.NODE_ENV === "production") {
+//   dotenv.config({ path: "./env/.env.production" });
+// }
+
+// Morgan middleware config
+app.use(morgan("dev"));
+
+// Port config
+app.set("port", Number(process.env.PORT) ?? 3001);
+
+// Cors config
+app.use(cors({ origin: "*" }));
+
+// JSON body config
 app.use(express.json());
-app.use(cors());
 
-// Rutas de la API
+// Router config
 app.use("/api", router);
 
-// Manejador de errores
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ message: "Ha ocurrido un error en el servidor" });
-});
+// Error Handler Middleware
+app.use(errorHandlerMiddleware);
+
+// Route not found handler middleware
+app.use(routeNotFoundMiddleware);
 
 export default app;
