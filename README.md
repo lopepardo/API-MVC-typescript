@@ -4,5 +4,14 @@ Este proyecto busca implementar un template con la configuración inicial de una
 
 ## TODO:
 
-- Añadir base de datos con ORM
-- Documentación con Swagger
+- [x] Configuración inicial (eslint, prettier, husky, dotenv etc.)
+- [x] Estructura de carpetas (MVC)
+- [x] Configuración de middlewares (morgan, cors, json, error handler not found, etc.)
+- [x] Configuración de base de datos (MySQL)
+- [x] Configuración de rutas (express)
+- [x] Configuración de controladores (express)
+- [x] Configuración de modelos (Sequelize)
+- [ ] Configuración de servicios
+- [ ] Documentación con Swagger (OpenAPI)
+- [ ] Pruebas unitarias (Jest)
+- [ ] Pruebas de integración (Supertest)

@@ -1,6 +1,7 @@
 import express from "express";
+
 // ------------------ Import Routes ------------------
-import { productRoutes } from "./productRoutes";
+import { orderRoutes } from "./orderRoutes";
 // ------------------ Import Controllers ------------------
 import { endpointTest } from "../controllers/api";
 
@@ -12,7 +13,13 @@ const router = express.Router();
 // GET /api/ -> Endpoint example with auth middleware
 router.get("/", endpointTest);
 
-// GET /api/products -> Endpoint example
-router.use("/products", productRoutes);
+// Routes for products
+// router.use("/products", productRoutes);
+
+// Routes for customers
+// router.use("/customers", customerRoutes);
+
+// Routes for orders
+router.use("/orders", orderRoutes);
 
 export default router;

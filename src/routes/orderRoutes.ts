@@ -1,40 +1,22 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
+
+// ------------------ Import Controllers ------------------
 import { OrderController } from "../controllers/orderController";
 
 const router = Router();
 
 const orderController = new OrderController();
 
-router.get("/", (_req: Request, res: Response) => {
-  const orders = orderController.getAllOrders();
-  res.status(200).json(orders);
-});
+// GET /orders -> Get all orders
+router.get("/", orderController.getOrdersHandler);
 
-router.get("/:id", (req: Request, res: Response) => {
-  const id = req.params.id;
-  const order = orderController.getOrderById(id);
-  if (order) {
-    res.status(200).json(order);
-  } else {
-    res.status(404).send(`Order with id ${id} not found`);
-  }
-});
+// GET /orders/:id -> Get order by id
+router.get("/:id", orderController.getOrderByIdHandler);
 
-router.post("/", (req: Request, res: Response) => {
-  const order = orderController.createOrder(req.body);
-  res.status(201).json(order);
-});
+// POST /orders -> Create a new order
+router.post("/", orderController.createOrderHandler);
 
-router.put("/:id", (req: Request, res: Response) => {
-  const id = req.params.id;
-  const order = orderController.updateOrder(id, req.body);
-  res.status(200).json(order);
-});
+// PUT /orders/:id -> Update order by id
+router.put("/:id", orderController.updateOrderHandler);
 
-router.delete("/:id", (req: Request, res: Response) => {
-  const id = req.params.id;
-  orderController.deleteOrder(id);
-  res.sendStatus(204);
-});
-
-export { router };
+export { router as orderRoutes };
